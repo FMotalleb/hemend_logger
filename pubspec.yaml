@@ -1,5 +1,5 @@
 name: hemend_logger
-description: log handler for logging package it will organize logging methods and easier to use
+description: log handler for logging package it will organize logging methods and easier to use in the application
 version: 0.1.0+1
 
 environment:
