@@ -21,6 +21,8 @@
   "words": [
     "hemend_logger",
     "Hemend",
+    "runtimetype",
+    "tostring",
     "Logable"
   ]
 }
