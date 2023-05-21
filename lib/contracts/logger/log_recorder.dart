@@ -16,13 +16,13 @@ abstract class ILogRecorder {
 
   /// validates that this recorder should record the current log-record
   ///
-  /// by default validates that current recorder level must be equal or less than
-  /// log-record's log level
+  /// by default validates that current recorder level must be
+  /// equal or less than log-record's log level
   bool canRecord(LogRecordEntity record) {
     return logLevel <= record.level;
   }
 
   /// method that will be called when the manager received a new log-record
   /// that can be recorded by this recorder
-  FutureOr<void> onRecord(LogRecordEntity record);
+  void onRecord(LogRecordEntity record);
 }

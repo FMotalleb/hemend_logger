@@ -86,11 +86,6 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   );
 
   @override
-  void addListener(ILogRecorder listener) {
-    _listeners.add(listener);
-  }
-
-  @override
   int get logLevel => _logger.level.value;
 
   @override
@@ -98,12 +93,8 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   final List<ILogRecorder> _listeners;
 
   @override
-  Future<void> onLog(LogRecordEntity record) async {
-    for (final logger in listeners) {
-      if (logger.canRecord(record)) {
-        await logger.onRecord(record);
-      }
-    }
+  void addListener(ILogRecorder listener) {
+    _listeners.add(listener);
   }
 
   @override
