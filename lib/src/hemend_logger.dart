@@ -42,6 +42,31 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
     _init();
   }
 
+  /// default log manager that attaches to [Logger.root] and records any log
+  /// but logs from detached instances
+  ///
+  /// prints out log messages using the [AnsiLogger] with
+  /// [ansiLogMessageColorDecorator] by default and a timeLogDecorator
+  factory HemendLogger.defaultLogger([Logger? logger]) => HemendLogger(
+        logger: logger ?? Logger.root,
+        initialListeners: [
+          AnsiLogger(
+            logLevel: (logger ?? Logger.root).level.value,
+            decoration: [
+              ansiLogMessageColorDecorator(),
+              timeLogDecorator(
+                wrapper: (time) {
+                  final begin = AnsiColor.MAGENTA('<');
+                  final mid = AnsiColor.GREEN_BRIGHT(time);
+                  final end = AnsiColor.MAGENTA('>');
+                  return '$begin$mid$end';
+                },
+              ),
+            ],
+          ),
+        ],
+      );
+
   void _init() {
     _logger.onRecord
         .map(
@@ -59,31 +84,6 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   }
 
   final Logger _logger;
-
-  /// default log manager that attaches to [Logger.root] and records any log
-  /// but logs from detached instances
-  ///
-  /// prints out log messages using the [AnsiLogger] with
-  /// [ansiLogMessageColorDecorator] by default and a timeLogDecorator
-  static HemendLogger defaultLogger = HemendLogger(
-    logger: Logger.root,
-    initialListeners: [
-      AnsiLogger(
-        logLevel: Logger.root.level.value,
-        decoration: [
-          ansiLogMessageColorDecorator(),
-          timeLogDecorator(
-            wrapper: (time) {
-              final begin = AnsiColor.MAGENTA('<');
-              final mid = AnsiColor.GREEN_BRIGHT(time);
-              final end = AnsiColor.MAGENTA('>');
-              return '$begin$mid$end';
-            },
-          ),
-        ],
-      ),
-    ],
-  );
 
   @override
   int get logLevel => _logger.level.value;

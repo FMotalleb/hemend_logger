@@ -8,7 +8,8 @@ const _defaultColorMapper = {
   800: AnsiColor.BLUE_BRIGHT,
   700: AnsiColor.WHITE,
   500: AnsiColor.GREEN,
-  0: AnsiColor.GREEN_BRIGHT
+  400: AnsiColor.GREEN_BRIGHT,
+  0: AnsiColor.GREEN_BOLD_BRIGHT
 };
 
 /// ansi(console) log color decorator that uses a map of
