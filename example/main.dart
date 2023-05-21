@@ -21,7 +21,7 @@ class ExampleClass with LogableObject {
 
   /// You should not use toString() here
   /// its only use-case is in debug mode
-  /// under development environment this
+  /// under production environment this
   /// value is not class name
   // ignore: no_runtimetype_tostring
   String get loggerName => runtimeType.toString();
