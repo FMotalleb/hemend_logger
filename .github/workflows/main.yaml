@@ -7,10 +7,10 @@ concurrency:
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   semantic_pull_request:
@@ -24,4 +24,3 @@ jobs:
 
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
-
