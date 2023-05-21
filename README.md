@@ -2,6 +2,8 @@
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
+[![pub package](https://img.shields.io/pub/v/hemend_logger?color=blue)](https://pub.dev/packages/hemend_logger)
+[![pub package](https://img.shields.io/pub/v/hemend_logger?color=blue&label=git)](https://github.com/FMotalleb/hemend_logger)
 
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
