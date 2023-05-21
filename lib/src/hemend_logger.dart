@@ -1,6 +1,6 @@
-import 'package:hemend_logger/contracts/logger/logger.dart';
 import 'package:hemend_logger/src/ansi_logger/ansi_colors.dart';
 import 'package:hemend_logger/src/ansi_logger/ansi_logger.dart';
+import 'package:hemend_logger/src/contracts/logger/logger.dart';
 import 'package:hemend_logger/src/log_decorators/ansi_message_color_decorator.dart';
 import 'package:hemend_logger/src/log_decorators/ansi_time_log_decorator.dart';
 import 'package:logging/logging.dart';

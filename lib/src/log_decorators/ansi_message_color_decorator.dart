@@ -1,5 +1,5 @@
-import 'package:hemend_logger/contracts/logger/logger.dart';
 import 'package:hemend_logger/src/ansi_logger/ansi_colors.dart';
+import 'package:hemend_logger/src/contracts/logger/logger.dart';
 
 const _defaultColorMapper = {
   1200: AnsiColor.RED_BOLD,

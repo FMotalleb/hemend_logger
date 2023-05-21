@@ -1,5 +1,5 @@
-import 'package:hemend_logger/contracts/logger/logger.dart';
-import 'package:hemend_logger/contracts/typedefs.dart';
+import 'package:hemend_logger/src/contracts/logger/logger.dart';
+import 'package:hemend_logger/src/contracts/typedefs.dart';
 
 String _padLeft(int input) {
   return input.toString().padLeft(2, '0');
