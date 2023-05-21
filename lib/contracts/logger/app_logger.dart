@@ -15,8 +15,8 @@ abstract class ILogManager {
   /// {@macro log-levels}
   int get logLevel;
 
-  /// a method that receives log records and invokes the corresponding [listeners]
-  /// which are [ILogRecorder]
+  /// a method that receives log records and invokes the corresponding
+  /// [listeners] which are [ILogRecorder]
   Future<void> onLog(LogRecordEntity record) async {
     for (final recorder in listeners) {
       if (recorder.canRecord(record)) {
