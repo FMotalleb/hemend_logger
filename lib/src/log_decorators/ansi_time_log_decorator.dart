@@ -1,0 +1,29 @@
+import 'package:hemend_logger/contracts/logger/logger.dart';
+import 'package:hemend_logger/contracts/typedefs.dart';
+
+String _padLeft(int input) {
+  return input.toString().padLeft(2, '0');
+}
+
+String _defaultDecorator(String input) => input;
+
+String _defaultFormatter(DateTime input) =>
+    // ignore: lines_longer_than_80_chars
+    '${_padLeft(input.hour)}:${_padLeft(input.minute)}:${_padLeft(input.second)}';
+
+/// A log decorator that add time of the record behind the log-message
+LogDecorator timeLogDecorator({
+  String separator = ' ',
+  Adapter<String, String> wrapper = _defaultDecorator,
+  Adapter<DateTime, String> formatter = _defaultFormatter,
+}) {
+  return (String message, LogRecordEntity record) {
+    final buffer = StringBuffer();
+    final formattedTime = formatter(record.time);
+    buffer
+      ..write(wrapper(formattedTime))
+      ..write(separator)
+      ..write(message);
+    return buffer.toString();
+  };
+}

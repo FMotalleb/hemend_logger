@@ -1,35 +1,39 @@
 import 'dart:developer';
 
-import 'package:hemend_logger/contracts/logger/log_decorator.dart';
-import 'package:hemend_logger/contracts/logger/log_printer.dart';
-import 'package:hemend_logger/contracts/logger/record.dart';
-import 'package:hemend_logger/src/ansi_logger/ansi_color.dart';
+import 'package:hemend_logger/contracts/logger/logger.dart';
+import 'package:hemend_logger/contracts/typedefs.dart';
 
-class AnsiLogger extends ILogPrinter with DecoratedPrinter {
+/// {@template ansi-logger}
+/// Ansi logger that prints log records into the console
+/// using [log] from [dart:developer] package.
+/// {@endtemplate}
+class AnsiLogger extends ILogRecorder with DecoratedPrinter {
+  /// {@macro ansi-logger}
+  ///
+  /// * log level
+  ///
+  ///   {@macro log-level}
+  /// * recordAdapter
+  ///
+  ///   {@macro record-adapter}
+  /// * decoration
+  ///
+  ///   {@macro log-decoration}
   AnsiLogger({
     required this.logLevel,
-    this.recordAdapter,
+    this.recordAdapter = defaultAdapter,
     this.decoration = const [],
-    this.levelToColorMapper = AnsiLogger.defaultColorMapper,
-  }) : assert(
-          levelToColorMapper[0] != null || recordAdapter != null,
-          '''always create a level to color mapper for level 0 otherwise logger will probably fail when trying to find a color mapper for low level logs''',
-        );
+  });
 
-  // from [Level] of package logging
-  static const defaultColorMapper = {
-    1200: AnsiColors.RED_BOLD,
-    1000: AnsiColors.MAGENTA,
-    900: AnsiColors.YELLOW_BRIGHT,
-    800: AnsiColors.BLUE_BRIGHT,
-    700: AnsiColors.WHITE,
-    500: AnsiColors.GREEN,
-    0: AnsiColors.GREEN_BRIGHT
-  };
   @override
-  List<LogDecorator> decoration;
-  final Map<int, AnsiColors> levelToColorMapper;
-  final String Function(LogRecordEntity)? recordAdapter;
+  final List<LogDecorator> decoration;
+
+  /// {@template record-adapter}
+  /// as ansi logger only supports string we have to map the log record
+  /// to string so by default we will only extract log-message but if
+  /// you want to add a custom [recordAdapter] you can pass this parameter
+  /// {@endtemplate}
+  final Adapter<LogRecordEntity, String> recordAdapter;
 
   @override
   final int logLevel;
@@ -48,19 +52,11 @@ class AnsiLogger extends ILogPrinter with DecoratedPrinter {
     );
   }
 
+  /// default log record adapter that only returns the [record].message
+  static String defaultAdapter(LogRecordEntity record) => record.message;
   String _logFormatter(LogRecordEntity record) {
-    final String message;
-    final String formattedMessage;
-    if (recordAdapter == null) {
-      message = record.message;
-      final mapper = levelToColorMapper.entries.firstWhere(
-        (element) => record.level >= element.key,
-      );
-      formattedMessage = mapper.value.wrap(message);
-    } else {
-      formattedMessage = recordAdapter!(record);
-    }
+    final message = recordAdapter(record);
 
-    return decorate(formattedMessage, record);
+    return decorate(message, record);
   }
 }
