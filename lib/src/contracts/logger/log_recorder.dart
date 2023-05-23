@@ -25,4 +25,7 @@ abstract class ILogRecorder {
   /// method that will be called when the manager received a new log-record
   /// that can be recorded by this recorder
   void onRecord(LogRecordEntity record);
+
+  /// called when this recorder is removed from the manager
+  void close() {}
 }

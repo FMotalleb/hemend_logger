@@ -100,5 +100,6 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   @override
   void removeListener(ILogRecorder listener) {
     _listeners.remove(listener);
+    super.removeListener(listener);
   }
 }

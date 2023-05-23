@@ -29,5 +29,8 @@ abstract class ILogManager {
   void addListener(ILogRecorder listener);
 
   /// removes one of [ILogRecorder] listeners of this instance
-  void removeListener(ILogRecorder listener);
+  @mustCallSuper
+  void removeListener(ILogRecorder listener) {
+    listener.close();
+  }
 }
