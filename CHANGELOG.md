@@ -1,3 +1,7 @@
+## 0.1.4
+
+* (Feat) added close() method to log recorder concrete
+
 ## 0.1.3+1
 
 * fix on exporting the contracts
