@@ -4,7 +4,7 @@
 [![pub package](https://img.shields.io/pub/v/hemend_logger?color=blue)](https://pub.dev/packages/hemend_logger)
 [![pub points](https://img.shields.io/pub/points/hemend_logger)](https://pub.dev/packages/hemend_logger)
 [![code_count](https://img.shields.io/github/languages/top/fmotalleb/hemend_logger?color=green&label=pure%20dart)](https://pub.dev/packages/hemend_logger)
-[![git repo](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
+[![code size](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
 [![git repo](https://img.shields.io/pub/v/hemend_logger?color=blue&label=git)](https://github.com/FMotalleb/hemend_logger)
 
 
