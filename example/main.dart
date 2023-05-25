@@ -1,6 +1,5 @@
 import 'package:hemend_logger/hemend_logger.dart';
 import 'package:hemend_logger/src/flow/async_flow.dart';
-import 'package:hemend_logger/src/flow/sync_flow.dart';
 import 'package:logging/logging.dart';
 
 Future<void> main() async {
@@ -24,7 +23,7 @@ Future<void> main() async {
       defer(
         (result) async {
           logger.info('this is first defer, and we will return the 15 as result value');
-          return (15, result.exception);
+          return (result: 15, exception: result.exception);
         },
       );
 
@@ -32,7 +31,7 @@ Future<void> main() async {
       logger.info('now throws an error');
       throw Exception('unknown error');
       defer(
-        (p0, exception) async {
+        (result) async {
           logger.info('but this differ must run first');
           return null;
         },

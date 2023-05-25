@@ -53,7 +53,6 @@ typedef ResultSignature<T> = ({T? result, Object? exception});
 /// By receiving and acting upon the result and/or exception from preceding
 /// steps, developers can create synchronous task flows that are adaptable
 /// and customizable to meet specific requirements.
-///
 /// {@endtemplate}
 typedef SyncDeferred<T> = ResultSignature<T>? Function(ResultSignature<T>?);
 
@@ -91,11 +90,24 @@ ResultSignature<T>? syncFlow<T>(
 ) =>
     SyncFlowHandler.handle<T>(task);
 
-/// The SyncFlowHandler is responsible for managing synchronous task flows by creating an additional call stack to schedule and execute desired methods after the main call. It provides a structured and organized approach to handle sequential execution of synchronous tasks.
-/// By utilizing the Sync Flow Handler, developers can easily define and orchestrate the execution order of synchronous methods, allowing for modular and customizable synchronous task flows.
-/// The handler creates a separate call stack for deferred methods, enabling them to run in a controlled and predetermined sequence, ensuring proper flow and synchronization within the task execution.
-/// This abstraction simplifies the implementation of complex synchronous flows, enhances code readability, and promotes maintainability by separating the flow control logic from the actual task implementations.
-/// Overall, the Sync Flow Handler serves as a valuable tool in managing synchronous task flows and enables developers to design efficient and well-structured synchronous execution paths.
+/// The SyncFlowHandler is responsible for managing synchronous task flows by
+/// creating an additional call stack to schedule and execute desired methods
+/// after the main call. It provides a structured and organized approach to
+/// handle sequential execution of synchronous tasks.
+///
+/// By utilizing the Sync Flow Handler, developers can easily define and
+/// orchestrate the execution order of synchronous methods, allowing for
+/// modular and customizable synchronous task flows.
+/// The handler creates a separate call stack for deferred methods, enabling
+/// them to run in a controlled and predetermined sequence, ensuring proper
+/// flow and synchronization within the task execution.
+/// This abstraction simplifies the implementation of complex synchronous flows,
+/// enhances code readability, and promotes maintainability by separating
+/// the flow control logic from the actual task implementations.
+///
+/// Overall, the Sync Flow Handler serves as a valuable tool in managing
+/// synchronous task flows and enables developers to design efficient
+/// and well-structured synchronous execution paths.
 class SyncFlowHandler<T> {
   SyncFlowHandler._()
       : _differedStack = [],
@@ -137,15 +149,11 @@ class SyncFlowHandler<T> {
     return _differedStack.reversed.fold<ResultSignature<T>?>(
       result,
       (previousValue, element) {
-        try {
-          final deferResult = element(previousValue);
-          return previousValue?.copyWith(
-            result: deferResult?.result,
-            exception: deferResult?.exception,
-          );
-        } catch (e) {
-          return previousValue?.copyWith(exception: e);
-        }
+        final deferResult = element(previousValue);
+        return previousValue?.copyWith(
+          result: deferResult?.result,
+          exception: deferResult?.exception,
+        );
       },
     );
   }

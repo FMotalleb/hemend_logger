@@ -1,4 +1,4 @@
-## 0.1.4
+## 0.1.4+1
 
 * (Feat) added close() method to log recorder concrete
 

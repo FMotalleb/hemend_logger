@@ -177,17 +177,11 @@ class AsyncFlow<T> {
       Future.value(result),
       (previousValue, element) async {
         final prevResult = await previousValue;
-        try {
-          final result = await element(prevResult);
-          return prevResult.copyWith(
-            result: result?.result,
-            exception: result?.exception,
-          );
-        } catch (e) {
-          return prevResult.copyWith(
-            exception: e,
-          );
-        }
+        final result = await element(prevResult);
+        return prevResult.copyWith(
+          result: result?.result,
+          exception: result?.exception,
+        );
       },
     );
   }
