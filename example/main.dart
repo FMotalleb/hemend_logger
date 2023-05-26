@@ -1,5 +1,4 @@
 import 'package:hemend_logger/hemend_logger.dart';
-import 'package:hemend_logger/src/flow/async_flow.dart';
 import 'package:logging/logging.dart';
 
 Future<void> main() async {
@@ -15,31 +14,6 @@ Future<void> main() async {
     ..severe('this is severe with level value:${Level.SEVERE.value}')
     ..shout('this is shout with level value:${Level.SHOUT.value}');
   ExampleClass().test();
-  final logger = Logger('flow');
-
-  final result = await asyncFlow<int>(
-    (defer) async {
-      logger.info('now started the flow');
-      defer(
-        (result) async {
-          logger.info('this is first defer, and we will return the 15 as result value');
-          return (result: 15, exception: result.exception);
-        },
-      );
-
-      logger.info('as you can see it will not show defer yet');
-      logger.info('now throws an error');
-      throw Exception('unknown error');
-      defer(
-        (result) async {
-          logger.info('but this differ must run first');
-          return null;
-        },
-      );
-      return null;
-    },
-  );
-  logger.info(result);
 }
 
 class ExampleClass with LogableObject {
