@@ -28,7 +28,7 @@ class HemendLogger extends ILogManager {
         _listeners = [
           ...initialListeners,
         ] {
-    if (logger.name.isNotEmpty && (hierarchicalLoggingEnabled == false)) {
+    if (logger.parent != null && hierarchicalLoggingEnabled == false) {
       if (enableHierarchicalLogging) {
         hierarchicalLoggingEnabled = true;
       } else {
