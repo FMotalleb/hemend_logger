@@ -1,3 +1,7 @@
+## 0.1.5+1
+
+* (fix) thrown an exception if used a detached logger
+
 ## 0.1.4+1
 
 * (Feat) added close() method to log recorder concrete
