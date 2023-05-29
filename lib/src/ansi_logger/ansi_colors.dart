@@ -1,5 +1,8 @@
 // ignore_for_file: constant_identifier_names, public_member_api_docs
 
+// TODO(fmotalleb): change ansi color system.
+// two separated parts colors/styles.
+
 /// Colors that ansi format supports
 enum AnsiColor {
   RESET('\x1B[0;0m'),

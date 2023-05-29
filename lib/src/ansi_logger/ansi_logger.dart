@@ -1,11 +1,10 @@
-import 'dart:developer';
+// import 'dart:developer';
+import 'dart:io';
 
-import 'package:hemend_logger/src/contracts/logger/logger.dart';
-import 'package:hemend_logger/src/contracts/typedefs.dart';
+import 'package:hemend_logger/hemend_logger.dart';
 
 /// {@template ansi-logger}
 /// Ansi logger that prints log records into the console
-/// using [log] from [dart:developer] package.
 /// {@endtemplate}
 class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   /// {@macro ansi-logger}
@@ -22,8 +21,11 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   AnsiLogger({
     required this.logLevel,
     this.recordAdapter = defaultAdapter,
-    this.decoration = const [],
-  });
+    List<LogDecorator> decoration = const [],
+  }) : decoration = [
+          ...decoration,
+          _ansiDefaultDecorator,
+        ];
 
   @override
   final List<LogDecorator> decoration;
@@ -41,15 +43,16 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   @override
   void onRecord(LogRecordEntity record) {
     final message = _logFormatter(record);
-    log(
-      message,
-      level: record.level,
-      name: record.loggerName,
-      error: record.error,
-      stackTrace: record.stackTrace,
-      time: record.time,
-      zone: record.zone,
-    );
+    stdout.add(message.codeUnits);
+    // log(
+    //   message,
+    //   level: record.level,
+    //   name: record.loggerName,
+    //   error: record.error,
+    //   stackTrace: record.stackTrace,
+    //   time: record.time,
+    //   zone: record.zone,
+    // );
   }
 
   /// default log record adapter that only returns the [record].message
@@ -59,4 +62,26 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
 
     return decorate(message, record);
   }
+}
+
+String _ansiDefaultDecorator(String message, LogRecordEntity record) {
+  final loggerName = AnsiColor.YELLOW.wrap('[${record.loggerName}]');
+  final buffer = StringBuffer()
+    ..write(loggerName)
+    ..write('\t')
+    ..writeln(message);
+  if (record.error != null) {
+    final errorMessage = record.error.toString();
+    final errorRepresentation = AnsiColor.RED_BRIGHT(errorMessage);
+    buffer
+      ..write('\t')
+      ..writeln(errorRepresentation);
+  }
+  if (record.stackTrace != null) {
+    final stackTraceMessage = record.stackTrace.toString();
+    final stackTraceRepresentation = AnsiColor.RED_BRIGHT(stackTraceMessage);
+    buffer.writeln(stackTraceRepresentation);
+  }
+
+  return buffer.toString();
 }
