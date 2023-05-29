@@ -1,5 +1,5 @@
-// import 'dart:developer';
-import 'dart:io';
+import 'dart:developer';
+// import 'dart:io';
 
 import 'package:hemend_logger/hemend_logger.dart';
 
@@ -24,7 +24,7 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
     List<LogDecorator> decoration = const [],
   }) : decoration = [
           ...decoration,
-          _ansiDefaultDecorator,
+          // _ansiDefaultDecorator,
         ];
 
   @override
@@ -43,16 +43,16 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   @override
   void onRecord(LogRecordEntity record) {
     final message = _logFormatter(record);
-    stdout.add(message.codeUnits);
-    // log(
-    //   message,
-    //   level: record.level,
-    //   name: record.loggerName,
-    //   error: record.error,
-    //   stackTrace: record.stackTrace,
-    //   time: record.time,
-    //   zone: record.zone,
-    // );
+    // stdout.add(message.codeUnits);
+    log(
+      message,
+      level: record.level,
+      name: record.loggerName,
+      error: record.error,
+      stackTrace: record.stackTrace,
+      time: record.time,
+      zone: record.zone,
+    );
   }
 
   /// default log record adapter that only returns the [record].message
