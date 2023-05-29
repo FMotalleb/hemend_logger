@@ -1,22 +1,58 @@
 part of 'logger.dart';
 
-/// [LogDecorator] abstraction indicates that any decorator will receive
-/// last non-decorated or decorated message from [ILogRecorder]
-/// and decorate it with given record then return a decorated message
+/// The decorator function then applies the necessary modifications or
+/// enhancements to the log message and returns the decorated message as a
+/// String. This allows for customizing the formatting, adding contextual
+/// information, or performing any other desired
+/// transformations on log messages.
 typedef LogDecorator = String Function(String message, LogRecordEntity record);
 
-/// mixin for [ILogRecorder] to add a [decorate] method
-/// that decorates messages using [decoration]
+/// The [DecoratedPrinter] mixin extends the functionality of
+/// the [ILogRecorder] interface by adding a [decorate] method.
+///
+/// This mixin is designed to be used with classes that implement
+/// the [ILogRecorder] interface.
+///
+/// The purpose of the [DecoratedPrinter] mixin is to enable the [decoration] of
+/// log messages using a list of decorators specified by
+/// the [decoration] property.
 mixin DecoratedPrinter on ILogRecorder {
   /// {@template log-decoration}
-  /// List of decorators that are used by this [ILogRecorder].
+  /// returns a list of [LogDecorator] functions.
   ///
-  /// please make sure that you have inserted decorators in correct order
+  /// These [LogDecorator] functions represent the decorators that will be
+  /// applied to log messages.
+  ///
+  /// It is important to ensure that the decorators are inserted in the correct
+  /// order to achieve the desired decoration effect.
   /// {@endtemplate}
   List<LogDecorator> get decoration;
 
-  /// a method that receives the non-decorated message from the [ILogRecorder]
-  /// and decorates it with [decoration]
+  /// The decorate method is a method that receives a non-decorated log message
+  /// as [message] and a [LogRecordEntity] object as record.
+  /// It applies the decoration logic using the list of [LogDecorator]
+  /// functions specified in the [decoration] property.
+  ///
+  /// Here's how the decorate method works:
+  ///
+  /// 1. It starts with the [message] parameter as the initial value.
+  /// 2. It uses the fold method on the [decoration] list to iterate over each
+  /// [LogDecorator] function.
+  /// 3. In each iteration, the current [LogDecorator] function is invoked with
+  /// the previousValue (initially set to the message) and the record.
+  /// 4. The result of each decorator invocation becomes the previousValue for
+  /// the next iteration.
+  /// 5. Finally, the decorated message is returned as the output of
+  /// the decorate method.
+  /// This approach allows for a sequential application of decorators,
+  /// where each decorator modifies the log message based on the previous
+  /// decorator's output.
+  /// The end result is a decorated message that has been processed by all
+  /// the decorators in the [decoration] list.
+  ///
+  /// Implementing the [decorate] method in this way provides a convenient and
+  /// flexible mechanism to decorate log messages before they are recorded by
+  /// the log recorder's main method.
   String decorate(String message, LogRecordEntity record) {
     final output = decoration.fold(
       message,
