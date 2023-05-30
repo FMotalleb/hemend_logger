@@ -64,24 +64,24 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   }
 }
 
-String _ansiDefaultDecorator(String message, LogRecordEntity record) {
-  final loggerName = AnsiColor.YELLOW.wrap('[${record.loggerName}]');
-  final buffer = StringBuffer()
-    ..write(loggerName)
-    ..write('\t')
-    ..writeln(message);
-  if (record.error != null) {
-    final errorMessage = record.error.toString();
-    final errorRepresentation = AnsiColor.RED_BRIGHT(errorMessage);
-    buffer
-      ..write('\t')
-      ..writeln(errorRepresentation);
-  }
-  if (record.stackTrace != null) {
-    final stackTraceMessage = record.stackTrace.toString();
-    final stackTraceRepresentation = AnsiColor.RED_BRIGHT(stackTraceMessage);
-    buffer.writeln(stackTraceRepresentation);
-  }
+// String _ansiDefaultDecorator(String message, LogRecordEntity record) {
+//   final loggerName = AnsiColor.YELLOW.wrap('[${record.loggerName}]');
+//   final buffer = StringBuffer()
+//     ..write(loggerName)
+//     ..write('\t')
+//     ..writeln(message);
+//   if (record.error != null) {
+//     final errorMessage = record.error.toString();
+//     final errorRepresentation = AnsiColor.RED_BRIGHT(errorMessage);
+//     buffer
+//       ..write('\t')
+//       ..writeln(errorRepresentation);
+//   }
+//   if (record.stackTrace != null) {
+//     final stackTraceMessage = record.stackTrace.toString();
+//     final stackTraceRepresentation = AnsiColor.RED_BRIGHT(stackTraceMessage);
+//     buffer.writeln(stackTraceRepresentation);
+//   }
 
-  return buffer.toString();
-}
+//   return buffer.toString();
+// }
