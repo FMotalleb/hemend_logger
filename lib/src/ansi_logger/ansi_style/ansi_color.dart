@@ -1,10 +1,14 @@
 // https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters
 
+// ignore_for_file: public_member_api_docs
+
 import 'package:hemend_logger/src/contracts/ansi_console/color.dart';
 import 'package:hemend_logger/src/contracts/ansi_console/select_graphic_rendition.dart';
 
-class _RgbAnsiColor implements IAnsiColor {
-  _RgbAnsiColor(
+/// {@macro ansi-color}
+class RgbAnsiColor implements IAnsiColor {
+  /// {@macro ansi-color}
+  const RgbAnsiColor(
     this.red,
     this.green,
     this.blue,
@@ -62,7 +66,7 @@ enum AnsiColor implements IAnsiColor {
     int green = 0,
     int blue = 0,
   }) =>
-      _RgbAnsiColor(
+      RgbAnsiColor(
         red,
         green,
         blue,
@@ -96,11 +100,7 @@ class AnsiColorStyle extends ISelectGraphicRendition {
   const AnsiColorStyle({
     this.color = AnsiColor.blue,
     this.mode = AnsiColorMode.foreground,
-  }) : assert(
-          // ignore: lines_longer_than_80_chars
-          color is! _RgbAnsiColor || mode == AnsiColorMode.background || mode == AnsiColorMode.foreground,
-          'Rgb Colors does not accept light color modes',
-        );
+  });
 
   /// {@macro ansi-color}
   final IAnsiColor color;
@@ -109,5 +109,12 @@ class AnsiColorStyle extends ISelectGraphicRendition {
   final AnsiColorMode mode;
 
   @override
-  String get value => '${mode._value}${color.value}';
+  String get value {
+    assert(
+      // ignore: lines_longer_than_80_chars
+      color is! RgbAnsiColor || mode == AnsiColorMode.background || mode == AnsiColorMode.foreground,
+      'Rgb Colors does not accept light color modes',
+    );
+    return '${mode._value}${color.value}';
+  }
 }

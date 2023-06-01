@@ -54,7 +54,7 @@ class ExampleClass with LogableObject {
     info('this is info with level value:${Level.INFO.value}');
     warning('this is warning with level value:${Level.WARNING.value}');
     shout('this is shout with level value:${Level.SHOUT.value}');
-    warning(
+    severe(
       'test error carrier',
       Exception('error happens'),
       StackTrace.current,

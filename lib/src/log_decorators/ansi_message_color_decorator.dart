@@ -10,13 +10,19 @@ const _defaultColorMapper = {
     [
       AnsiColorStyle(
         color: AnsiColor.red,
+        mode: AnsiColorMode.lightForeground,
       ),
     ],
   ),
   1000: AnsiConsoleStyle(
     [
       AnsiColorStyle(
-        color: AnsiColor.magenta,
+        color: RgbAnsiColor(
+          250,
+          100,
+          0,
+        ),
+        mode: AnsiColorMode.foreground,
       ),
     ],
   ),
@@ -24,6 +30,7 @@ const _defaultColorMapper = {
     [
       AnsiColorStyle(
         color: AnsiColor.yellow,
+        mode: AnsiColorMode.lightForeground,
       ),
     ],
   ),
@@ -31,6 +38,7 @@ const _defaultColorMapper = {
     [
       AnsiColorStyle(
         color: AnsiColor.blue,
+        mode: AnsiColorMode.lightForeground,
       ),
     ],
   ),
@@ -52,14 +60,15 @@ const _defaultColorMapper = {
     [
       AnsiColorStyle(
         color: AnsiColor.green,
+        mode: AnsiColorMode.lightForeground,
       ),
-      AnsiTextEffect.bold,
     ],
   ),
   0: AnsiConsoleStyle(
     [
       AnsiColorStyle(
         color: AnsiColor.green,
+        mode: AnsiColorMode.lightForeground,
       ),
       AnsiTextEffect.bold,
       AnsiTextEffect.slowBlink,

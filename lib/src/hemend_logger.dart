@@ -1,10 +1,4 @@
-import 'package:hemend_logger/src/ansi_logger/ansi_logger.dart';
-import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_color.dart';
-import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_console_style.dart';
-import 'package:hemend_logger/src/contracts/logger/logger.dart';
-import 'package:hemend_logger/src/log_decorators/ansi_message_color_decorator.dart';
-import 'package:hemend_logger/src/log_decorators/ansi_time_log_decorator.dart';
-import 'package:logging/logging.dart';
+import 'package:hemend_logger/hemend_logger.dart';
 
 /// {@template hemend-logger}
 /// A simple implementation of the [ILogManager]
@@ -62,7 +56,20 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
                       AnsiColorStyle(color: AnsiColor.magenta),
                     ],
                   );
-                  return magenta.wrap('<$time>');
+                  const green = AnsiConsoleStyle(
+                    [
+                      AnsiColorStyle(
+                        color: AnsiColor.green,
+                        mode: AnsiColorMode.lightForeground,
+                      ),
+                      AnsiTextEffect.underLine,
+                    ],
+                  );
+                  return magenta.wrap('<') +
+                      green.wrap(time) +
+                      magenta.wrap(
+                        '>',
+                      );
                 },
               ),
             ],
