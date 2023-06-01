@@ -39,9 +39,11 @@ class AnsiConsoleStyle extends ISelectGraphicRendition {
       .toString();
   static const ISelectGraphicRendition _reset = _ResetEffects();
 
+  /// {@template wrap-style}
   /// this method receives a [String] [input] and wraps it with SGRs
   /// from [selectGraphicRenditions] and returns a message that can be
   /// written in an ansi terminal
+  /// {@endtemplate}
   String wrap(String input) {
     final buffer = StringBuffer();
     if (selectGraphicRenditions.isNotEmpty) {
@@ -54,6 +56,9 @@ class AnsiConsoleStyle extends ISelectGraphicRendition {
       return input;
     }
   }
+
+  /// {@macro wrap-style}
+  String call(String input) => wrap(input);
 }
 
 class _ResetEffects extends ISelectGraphicRendition {
