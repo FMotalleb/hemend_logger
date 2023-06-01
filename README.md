@@ -11,7 +11,8 @@
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
 ![AnsiLogger](./assets/console.png "Default AnsiLogger")
-![BlinkEffect](./assets/blink.webm "Blinking Effect")
+
+[BlinkEffect](./assets/blink.webm "Blinking Effect")
 
 ## Installation 💻
 
