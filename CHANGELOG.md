@@ -1,3 +1,10 @@
+## 0.2.0+1
+
+* (Breaking) ansi logger parameters are changed
+* (feat) ansi effects
+* (fix) ansi color system (now changed to SGR)
+    currently supporting even RGB colors (24Bit format)
+
 ## 0.1.5+1
 
 * (fix) thrown an exception if used a detached logger
