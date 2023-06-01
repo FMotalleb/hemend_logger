@@ -112,7 +112,9 @@ class AnsiColorStyle extends ISelectGraphicRendition {
   String get value {
     assert(
       // ignore: lines_longer_than_80_chars
-      color is! RgbAnsiColor || mode == AnsiColorMode.background || mode == AnsiColorMode.foreground,
+      color is! RgbAnsiColor || //
+          mode == AnsiColorMode.background ||
+          mode == AnsiColorMode.foreground,
       'Rgb Colors does not accept light color modes',
     );
     return '${mode._value}${color.value}';
