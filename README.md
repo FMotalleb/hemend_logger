@@ -10,30 +10,6 @@
 
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
-## Base Flow
-
-```mermaid
-flowchart TD
-    Logger -->|LogRecord| HemendLogger{HemendLogger}
-    HemendLogger -->|LogRecordEntity| LogRecorder
-    LogRecorder -->|String| Presentation
-    Program-->|LogRecorder| HemendLogger
-```
-
-## Default Flow
-
-```mermaid
-flowchart TD
-    Logger -->|LogRecord| HemendLogger{HemendLogger}
-    HemendLogger -->|LogRecordEntity| AnsiLogRecorder
-    AnsiLogRecorder <-->|Record| Decorators
-
-    Program-->|LogRecorder| HemendLogger
-    Decorators <-->|Record| LogLevelDecorator
-    LogLevelDecorator<-->|Record| LogTimeDecorator
-    AnsiLogRecorder-->|AfterDecoration| AnsiTerminal
-```
-
 ![AnsiLogger](./assets/console.png "Default AnsiLogger")
 
 [BlinkEffect](https://github.com/FMotalleb/hemend_logger/assets/30149519/b20a6a45-9601-4229-8b71-e28e4de8a2db)
