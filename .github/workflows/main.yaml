@@ -52,14 +52,15 @@ jobs:
           dart pub global activate coverage 1.2.0
           dart test -j 4 --coverage=coverage --platform=vm && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env: 
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           path: ./coverage/lcov.info
           exclude: ${{inputs.coverage_excludes}}
           min_coverage: 85
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env: 
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        
+
