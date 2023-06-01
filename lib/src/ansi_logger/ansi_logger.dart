@@ -83,7 +83,7 @@ String _ansiDefaultDecorator(String message, LogRecordEntity record) {
   const yellow = AnsiConsoleStyle(
     [
       AnsiColorStyle(
-        color: RgbAnsiColor(250, 250, 0),
+        color: RgbAnsiColor(195, 170, 25),
       ),
     ],
   );
