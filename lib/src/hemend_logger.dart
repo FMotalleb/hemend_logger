@@ -1,5 +1,6 @@
 import 'package:hemend_logger/hemend_logger.dart';
 
+/// this variable is not available in dart but this will work in flutter
 const kDebugMode = (bool.fromEnvironment('dart.vm.product') == false) && //
     (bool.fromEnvironment('dart.vm.profile') == false);
 
