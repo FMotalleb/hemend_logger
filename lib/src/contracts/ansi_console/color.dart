@@ -5,9 +5,6 @@
 /// https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 /// {@endtemplate}
 abstract class IAnsiColor {
-  /// {@macro ansi-color}
-  const IAnsiColor();
-
   /// the value of the color in ansi escape
   String get value;
 }

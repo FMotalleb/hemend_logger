@@ -5,7 +5,7 @@ String _padLeft(int input) {
   return input.toString().padLeft(2, '0');
 }
 
-String _defaultDecorator(String input) => input;
+String defaultLogTimeWrapper(String input) => input;
 
 String _defaultFormatter(DateTime input) =>
     // ignore: lines_longer_than_80_chars
@@ -14,7 +14,7 @@ String _defaultFormatter(DateTime input) =>
 /// A log decorator that add time of the record behind the log-message
 LogDecorator timeLogDecorator({
   String separator = ' ',
-  Adapter<String, String> wrapper = _defaultDecorator,
+  Adapter<String, String> wrapper = defaultLogTimeWrapper,
   Adapter<DateTime, String> formatter = _defaultFormatter,
 }) {
   return (String message, LogRecordEntity record) {

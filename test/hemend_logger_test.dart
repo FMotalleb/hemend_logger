@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_positional_boolean_parameters
+
 import 'package:hemend_logger/hemend_logger.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -55,7 +57,7 @@ void main() {
         );
       });
       test(
-        'Test Manger Initialization',
+        'Manger Initialization',
         () {
           expect(loggerInstance.logLevel, logger.level.value);
 
@@ -66,6 +68,12 @@ void main() {
             },
             throwsException,
           );
+          final defaultLogger = HemendLogger.defaultLogger();
+          expect(defaultLogger, isA<HemendLogger>());
+          Logger.root.info('test');
+          expect(defaultLogger.listeners.isEmpty, false);
+          defaultLogger.removeListener(defaultLogger.listeners.first);
+          expect(defaultLogger.listeners.isEmpty, true);
         },
       );
       test(
