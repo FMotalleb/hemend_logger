@@ -8,7 +8,7 @@
 [![code size](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
 [![git repo](https://img.shields.io/pub/v/hemend_logger?color=blue&label=git)](https://github.com/FMotalleb/hemend_logger)
 [![Tests](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml/badge.svg)](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml)
-
+[![codecov](https://codecov.io/gh/FMotalleb/hemend_logger/branch/master/graph/badge.svg?token=1LFL10FAPU)](https://codecov.io/gh/FMotalleb/hemend_logger)
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
 ![AnsiLogger](./assets/console.png "Default AnsiLogger")
