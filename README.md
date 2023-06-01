@@ -12,7 +12,7 @@
 
 ![AnsiLogger](./assets/console.png "Default AnsiLogger")
 
-[BlinkEffect](./assets/blink.webm "Blinking Effect")
+[BlinkEffect](https://github.com/FMotalleb/hemend_logger/assets/30149519/b20a6a45-9601-4229-8b71-e28e4de8a2db)
 
 ## Installation 💻
 
