@@ -1,3 +1,7 @@
+## 0.2.3
+
+* (fix) logger was not working in cli mode (can be deactivated)
+
 ## 0.2.1+1
 
 * (Breaking) ansi logger parameters are changed
