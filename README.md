@@ -8,10 +8,10 @@
 [![code size](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
 [![git repo](https://img.shields.io/pub/v/hemend_logger?color=blue&label=git)](https://github.com/FMotalleb/hemend_logger)
 
-
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
 ![AnsiLogger](./assets/console.png "Default AnsiLogger")
+![BlinkEffect](./assets/blink.webm "Blinking Effect")
 
 ## Installation 💻
 
@@ -99,7 +99,6 @@ open coverage/index.html
 [github_actions_link]: https://docs.github.com/en/actions/learn-github-actions
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
-[very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_coverage_link]: https://github.com/marketplace/actions/very-good-coverage
 [very_good_workflows_link]: https://github.com/VeryGoodOpenSource/very_good_workflows
