@@ -1,4 +1,4 @@
-name: ci
+name: Tests
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,5 +22,39 @@ jobs:
       includes: "**/*.md"
       modified_files_only: false
 
-  # build:
-  #   uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+  build:
+    defaults:
+      run:
+        working-directory: "."
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: 📦 Install Dependencies
+        run: dart pub get
+
+      - name: ✨ Check Formatting
+        run: dart format --line-length 80 --set-exit-if-changed lib
+
+      - name: 🕵️ Analyze
+        run: dart analyze --fatal-infos --fatal-warnings lib
+
+      - name: 🧪 Run Tests
+        run: |
+          dart pub global activate coverage 1.2.0
+          dart test -j 4 --coverage=coverage --platform=vm && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
+
+      - name: 📊 Check Code Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v2
+        with:
+          path: ./coverage/lcov.info
+          exclude: ${{inputs.coverage_excludes}}
+          min_coverage: 85
