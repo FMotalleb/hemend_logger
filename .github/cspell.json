@@ -23,6 +23,7 @@
     "Hemend",
     "runtimetype",
     "tostring",
+    "codecov",
     "Logable"
   ]
 }
