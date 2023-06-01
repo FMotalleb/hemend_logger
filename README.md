@@ -7,6 +7,7 @@
 [![code_count](https://img.shields.io/github/languages/top/fmotalleb/hemend_logger?color=green&label=pure%20dart)](https://pub.dev/packages/hemend_logger)
 [![code size](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
 [![git repo](https://img.shields.io/pub/v/hemend_logger?color=blue&label=git)](https://github.com/FMotalleb/hemend_logger)
+[![Tests](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml/badge.svg)](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml)
 
 **Simple Logging Manager that extends Logging package to manage logging system.**
 
