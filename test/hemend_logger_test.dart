@@ -68,9 +68,25 @@ void main() {
             },
             throwsException,
           );
-          final defaultLogger = HemendLogger.defaultLogger();
+          var defaultLogger = HemendLogger.defaultLogger();
           expect(defaultLogger, isA<HemendLogger>());
-          Logger.root.info('test');
+          Logger.root.info(
+            'test',
+            Exception('test error'),
+            StackTrace.empty,
+          );
+          expect(defaultLogger.listeners.isEmpty, false);
+          defaultLogger.removeListener(defaultLogger.listeners.first);
+          expect(defaultLogger.listeners.isEmpty, true);
+          defaultLogger = HemendLogger.defaultLogger(
+            preferPrintOverLog: false,
+          );
+          expect(defaultLogger, isA<HemendLogger>());
+          Logger.root.info(
+            'test',
+            Exception('test error'),
+            StackTrace.empty,
+          );
           expect(defaultLogger.listeners.isEmpty, false);
           defaultLogger.removeListener(defaultLogger.listeners.first);
           expect(defaultLogger.listeners.isEmpty, true);
