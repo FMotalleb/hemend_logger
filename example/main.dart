@@ -4,8 +4,7 @@ import 'package:hemend_logger/hemend_logger.dart';
 
 Future<void> main() async {
   Logger.root.level = Level.ALL;
-
-  HemendLogger.defaultLogger();
+  HemendLogger.defaultLogger(preferPrintOverLog: true);
   Logger('ExampleLogger')
     ..finest('this is finest with level value:${Level.FINEST.value}')
     ..finer('this is finer with level value:${Level.FINER.value}')

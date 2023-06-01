@@ -1,5 +1,8 @@
 import 'package:hemend_logger/hemend_logger.dart';
 
+const kDebugMode = (bool.fromEnvironment('dart.vm.product') == false) && //
+    (bool.fromEnvironment('dart.vm.profile') == false);
+
 /// {@template hemend-logger}
 /// A simple implementation of the [ILogManager]
 /// that provides a logging solution for the application
@@ -42,10 +45,15 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   ///
   /// prints out log messages using the [AnsiLogger] with
   /// [ansiLogMessageColorDecorator] by default and a timeLogDecorator
-  factory HemendLogger.defaultLogger([Logger? logger]) => HemendLogger(
+  factory HemendLogger.defaultLogger({
+    Logger? logger,
+    bool preferPrintOverLog = kDebugMode,
+  }) =>
+      HemendLogger(
         logger: logger ?? Logger.root,
         initialListeners: [
           AnsiLogger(
+            preferPrintOverLog: preferPrintOverLog,
             logLevel: (logger ?? Logger.root).level.value,
             decoration: [
               ansiLogMessageColorDecorator(),

@@ -1,5 +1,4 @@
 import 'dart:developer';
-// import 'dart:io';
 
 import 'package:hemend_logger/hemend_logger.dart';
 
@@ -18,17 +17,28 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   /// * decoration
   ///
   ///   {@macro log-decoration}
+  /// * preferPrintOverLog
+  ///
+  ///   {@macro prefer-print}
   AnsiLogger({
+    required this.preferPrintOverLog,
     required this.logLevel,
-    this.recordAdapter = defaultAdapter,
     List<LogDecorator> decoration = const [],
+    this.recordAdapter = defaultAdapter,
   }) : decoration = [
           ...decoration,
-          // _ansiDefaultDecorator,
+          if (preferPrintOverLog) _ansiDefaultDecorator,
         ];
 
   @override
   final List<LogDecorator> decoration;
+
+  /// {@template prefer-print}
+  /// by default you can use [log] from developer package but you are unable
+  /// to use this method in release mode this flag will make sure that you are
+  /// able too see messages even in production mode
+  /// {@endtemplate}
+  final bool preferPrintOverLog;
 
   /// {@template record-adapter}
   /// as ansi logger only supports string we have to map the log record
@@ -44,15 +54,20 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   void onRecord(LogRecordEntity record) {
     final message = _logFormatter(record);
     // stdout.add(message.codeUnits);
-    log(
-      message,
-      level: record.level,
-      name: record.loggerName,
-      error: record.error,
-      stackTrace: record.stackTrace,
-      time: record.time,
-      zone: record.zone,
-    );
+    if (preferPrintOverLog) {
+      // ignore: avoid_print
+      print(message);
+    } else {
+      log(
+        message,
+        level: record.level,
+        name: record.loggerName,
+        error: record.error,
+        stackTrace: record.stackTrace,
+        time: record.time,
+        zone: record.zone,
+      );
+    }
   }
 
   /// default log record adapter that only returns the [record].message
@@ -64,24 +79,51 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
   }
 }
 
-// String _ansiDefaultDecorator(String message, LogRecordEntity record) {
-//   final loggerName = AnsiColor.YELLOW.wrap('[${record.loggerName}]');
-//   final buffer = StringBuffer()
-//     ..write(loggerName)
-//     ..write('\t')
-//     ..writeln(message);
-//   if (record.error != null) {
-//     final errorMessage = record.error.toString();
-//     final errorRepresentation = AnsiColor.RED_BRIGHT(errorMessage);
-//     buffer
-//       ..write('\t')
-//       ..writeln(errorRepresentation);
-//   }
-//   if (record.stackTrace != null) {
-//     final stackTraceMessage = record.stackTrace.toString();
-//     final stackTraceRepresentation = AnsiColor.RED_BRIGHT(stackTraceMessage);
-//     buffer.writeln(stackTraceRepresentation);
-//   }
+String _ansiDefaultDecorator(String message, LogRecordEntity record) {
+  const yellow = AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: RgbAnsiColor(250, 250, 0),
+      ),
+    ],
+  );
+  const red = AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: RgbAnsiColor(255, 10, 30),
+      ),
+    ],
+  );
+  const redDark = AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: RgbAnsiColor(150, 150, 0),
+      ),
+    ],
+  );
+  final loggerName = yellow(
+    '[${record.loggerName}]',
+  );
+  final buffer = StringBuffer()
+    ..write(loggerName)
+    ..write('\t')
+    ..write(message);
+  if (record.error != null) {
+    final errorMessage = record.error.toString();
+    final errorRepresentation = red(errorMessage);
+    buffer
+      ..write('\n\t')
+      ..write(errorRepresentation);
+  }
+  if (record.stackTrace != null) {
+    final stackTraceMessage = record.stackTrace.toString().split('\n');
+    final stackTraceRepresentation = stackTraceMessage.map(redDark.call).join(
+          '\n',
+        );
+    buffer
+      ..write('\n\t')
+      ..write(stackTraceRepresentation);
+  }
 
-//   return buffer.toString();
-// }
+  return buffer.toString();
+}
