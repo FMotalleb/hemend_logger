@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:hemend_logger/hemend_logger.dart';
-import 'package:logging/logging.dart';
 
 Future<void> main() async {
   Logger.root.level = Level.ALL;
+
   HemendLogger.defaultLogger();
   Logger('ExampleLogger')
     ..finest('this is finest with level value:${Level.FINEST.value}')
@@ -14,6 +16,25 @@ Future<void> main() async {
     ..severe('this is severe with level value:${Level.SEVERE.value}')
     ..shout('this is shout with level value:${Level.SHOUT.value}');
   ExampleClass().test();
+  final style = AnsiConsoleStyle([
+    AnsiColorStyle(
+      color: AnsiColor.fromRgp(
+        red: 250,
+        green: 150,
+      ),
+    ),
+    AnsiColorStyle(
+      color: AnsiColor.fromRgp(
+        red: 50,
+        green: 50,
+        blue: 200,
+      ),
+      mode: AnsiColorMode.background,
+    ),
+    AnsiTextEffect.fastBlink,
+    AnsiTextEffect.slowBlink,
+  ]);
+  print(style.wrap('blinking with rgb color and blue bg'));
 }
 
 class ExampleClass with LogableObject {

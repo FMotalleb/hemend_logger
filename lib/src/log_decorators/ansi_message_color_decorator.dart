@@ -1,15 +1,70 @@
-import 'package:hemend_logger/src/ansi_logger/ansi_colors.dart';
+// ignore_for_file: avoid_redundant_argument_values
+
+import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_color.dart';
+import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_console_style.dart';
+import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_text_effect.dart';
 import 'package:hemend_logger/src/contracts/logger/logger.dart';
 
 const _defaultColorMapper = {
-  1200: AnsiColor.RED_BOLD,
-  1000: AnsiColor.MAGENTA,
-  900: AnsiColor.YELLOW_BRIGHT,
-  800: AnsiColor.BLUE_BRIGHT,
-  700: AnsiColor.WHITE,
-  500: AnsiColor.GREEN,
-  400: AnsiColor.GREEN_BRIGHT,
-  0: AnsiColor.GREEN_BOLD_BRIGHT
+  1200: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.red,
+      ),
+    ],
+  ),
+  1000: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.magenta,
+      ),
+    ],
+  ),
+  900: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.yellow,
+      ),
+    ],
+  ),
+  800: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.blue,
+      ),
+    ],
+  ),
+  700: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.white,
+      ),
+    ],
+  ),
+  500: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.green,
+      ),
+    ],
+  ),
+  400: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.green,
+      ),
+      AnsiTextEffect.bold,
+    ],
+  ),
+  0: AnsiConsoleStyle(
+    [
+      AnsiColorStyle(
+        color: AnsiColor.green,
+      ),
+      AnsiTextEffect.bold,
+      AnsiTextEffect.slowBlink,
+    ],
+  ),
 };
 
 /// ansi(console) log color decorator that uses a map of
@@ -20,7 +75,7 @@ const _defaultColorMapper = {
 ///
 ///
 LogDecorator ansiLogMessageColorDecorator({
-  Map<int, AnsiColor> colorMap = _defaultColorMapper,
+  Map<int, AnsiConsoleStyle> colorMap = _defaultColorMapper,
 }) {
   assert(
     () {

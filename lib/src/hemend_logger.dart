@@ -1,5 +1,6 @@
-import 'package:hemend_logger/src/ansi_logger/ansi_colors.dart';
 import 'package:hemend_logger/src/ansi_logger/ansi_logger.dart';
+import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_color.dart';
+import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_console_style.dart';
 import 'package:hemend_logger/src/contracts/logger/logger.dart';
 import 'package:hemend_logger/src/log_decorators/ansi_message_color_decorator.dart';
 import 'package:hemend_logger/src/log_decorators/ansi_time_log_decorator.dart';
@@ -56,10 +57,12 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
               ansiLogMessageColorDecorator(),
               timeLogDecorator(
                 wrapper: (time) {
-                  final begin = AnsiColor.MAGENTA('<');
-                  final mid = AnsiColor.GREEN_BRIGHT(time);
-                  final end = AnsiColor.MAGENTA('>');
-                  return '$begin$mid$end';
+                  const magenta = AnsiConsoleStyle(
+                    [
+                      AnsiColorStyle(color: AnsiColor.magenta),
+                    ],
+                  );
+                  return magenta.wrap('<$time>');
                 },
               ),
             ],
