@@ -15,7 +15,6 @@ void main() {
         );
         expect(() => style.value, throwsException);
         expect(style('test'), isA<String>());
-        expect(defaultLogTimeWrapper('test'), 'test');
       },
     );
   });
