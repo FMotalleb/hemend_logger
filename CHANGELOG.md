@@ -1,3 +1,7 @@
+## 0.2.4
+
+* (minor): docs
+
 ## 0.2.3
 
 * (fix) logger was not working in cli mode (can be deactivated)

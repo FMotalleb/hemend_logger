@@ -1,7 +1,7 @@
 name: hemend_logger
 description: log handler for logging package it will organize logging methods and easier to use in the application
 repository: https://github.com/FMotalleb/hemend_logger
-version: 0.2.3
+version: 0.2.4
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -14,3 +14,9 @@ dev_dependencies:
 dependencies:
   logging: ">=1.0.0 <2.0.0"
   meta: ">=1.9.0 <2.0.0"
+
+screenshots:
+  - description: "Example of console printing."
+    path: assets/console.png
+  - description: "Example of console blink effect."
+    path: assets/blink.webm
