@@ -17,5 +17,19 @@ void main() {
         expect(style('test'), isA<String>());
       },
     );
+    test(
+      'Print test',
+      () {
+        final style = AnsiConsoleStyle(
+          [
+            AnsiColorStyle(
+              color: AnsiColor.fromRgp(),
+            ),
+          ],
+        );
+        expect(() => style.value, throwsException);
+        expect(style('test'), isA<String>());
+      },
+    );
   });
 }
