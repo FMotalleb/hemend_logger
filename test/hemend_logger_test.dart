@@ -45,7 +45,9 @@ void main() {
           }
           return instance;
         };
-        loggerInstance = HemendLogger(logger: logger);
+        loggerInstance = HemendLogger(
+          logger: logger,
+        );
         logEntity = LogRecordEntity(
           error: null,
           level: 800,
@@ -68,9 +70,12 @@ void main() {
             },
             throwsException,
           );
-          var defaultLogger = HemendLogger.defaultLogger();
+          var defaultLogger = HemendLogger.defaultLogger(
+            logger: testLogger,
+            preferPrintOverLog: true,
+          );
           expect(defaultLogger, isA<HemendLogger>());
-          Logger.root.info(
+          testLogger.info(
             'test',
             Exception('test error'),
             StackTrace.empty,

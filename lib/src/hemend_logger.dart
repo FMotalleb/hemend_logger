@@ -48,10 +48,11 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   /// [ansiLogMessageColorDecorator] by default and a timeLogDecorator
   factory HemendLogger.defaultLogger({
     Logger? logger,
-    bool preferPrintOverLog = kDebugMode,
+    bool preferPrintOverLog = !kDebugMode,
   }) =>
       HemendLogger(
         logger: logger ?? Logger.root,
+        enableHierarchicalLogging: logger?.parent != null,
         initialListeners: [
           AnsiLogger(
             preferPrintOverLog: preferPrintOverLog,

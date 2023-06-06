@@ -1,4 +1,8 @@
-## 0.2.4
+## 0.2.5+1
+
+* (fix) `prefer print over log` should be false in debug mode
+
+## 0.2.4+2
 
 * (minor): docs
 
