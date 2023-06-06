@@ -1,4 +1,5 @@
 import 'package:hemend_logger/hemend_logger.dart';
+import 'package:term_glyph/term_glyph.dart';
 
 /// this variable is not available in dart but this will work in flutter
 const kDebugMode = (bool.fromEnvironment('dart.vm.product') == false) && //
@@ -72,14 +73,15 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
                         color: AnsiColor.green,
                         mode: AnsiColorMode.lightForeground,
                       ),
-                      AnsiTextEffect.underLine,
+                      AnsiTextEffect.bold,
                     ],
                   );
-                  return magenta.wrap('<') +
-                      green.wrap(time) +
-                      magenta.wrap(
-                        '>',
-                      );
+                  return [
+                    green.wrap(time),
+                    magenta.wrap(
+                      rightArrow,
+                    )
+                  ].join(' ');
                 },
               ),
             ],
