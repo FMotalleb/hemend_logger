@@ -52,6 +52,7 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   }) =>
       HemendLogger(
         logger: logger ?? Logger.root,
+        enableHierarchicalLogging: logger?.parent != null,
         initialListeners: [
           AnsiLogger(
             preferPrintOverLog: preferPrintOverLog,
