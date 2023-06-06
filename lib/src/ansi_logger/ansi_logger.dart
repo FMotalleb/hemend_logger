@@ -121,7 +121,7 @@ String _ansiDefaultDecorator(String message, LogRecordEntity record) {
           '\n',
         );
     buffer
-      ..write('\n\t')
+      ..write('\n')
       ..write(stackTraceRepresentation);
   }
 
