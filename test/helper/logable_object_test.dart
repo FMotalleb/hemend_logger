@@ -24,7 +24,7 @@ void main() {
       'logger check',
       () async {
         testObject = TesterObject(null);
-        final newLogger = testObject.createSubLogger('test');
+        final newLogger = testObject.getChild('test');
         expect(newLogger, isA<Logger>());
         expect(testObject.loggerName, isA<String>());
         expect(testObject.logger, isA<Logger>());
