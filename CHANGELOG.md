@@ -1,3 +1,7 @@
+## 0.2.6+1
+
+* (feat) logger helper method (`getChild`)
+
 ## 0.2.5+1
 
 * (fix) `prefer print over log` should be false in debug mode
