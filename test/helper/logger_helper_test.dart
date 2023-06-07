@@ -1,5 +1,4 @@
 import 'package:hemend_logger/hemend_logger.dart';
-import 'package:hemend_logger/src/helper/logger_helper.dart';
 import 'package:test/test.dart';
 
 void main() {

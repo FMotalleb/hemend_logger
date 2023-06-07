@@ -10,6 +10,7 @@ mixin class LogableObject {
   /// for release mode override logger name manually
   /// the reason is that obfuscation method will mess with runtime names
   @mustBeOverridden
+  // ignore: no_runtimetype_tostring
   String get loggerName => runtimeType.toString();
 
   /// [Logger] instance for this class (can be a child of other loggers)
