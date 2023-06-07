@@ -1,10 +1,11 @@
 // ignore_for_file: comment_references
 
+import 'package:hemend_logger/src/helper/logger_helper.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 
 /// a mixin that adds logging capabilities to the class
-mixin LogableObject {
+mixin class LogableObject {
   /// this value is only supported in debug mode
   /// for release mode override logger name manually
   /// the reason is that obfuscation method will mess with runtime names
@@ -15,7 +16,7 @@ mixin LogableObject {
   Logger get logger => Logger(loggerName);
 
   /// creates a new [Logger] instance that is the child of [logger]
-  Logger createSubLogger(String name) => Logger('$loggerName.$name');
+  Logger getChild(String name) => logger.getChild(name);
 
   /// Log message at level [Level.INFO].
   ///
