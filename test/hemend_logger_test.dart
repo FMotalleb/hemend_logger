@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_positional_boolean_parameters
 
+import 'dart:async';
+
 import 'package:hemend_logger/hemend_logger.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -61,40 +63,48 @@ void main() {
       test(
         'Manger Initialization',
         () {
-          expect(loggerInstance.logLevel, logger.level.value);
-
-          final testLogger = Logger('non.root.logger');
-          expect(
+          final noPrint = ZoneSpecification(
+            print: (self, parent, zone, line) {},
+          );
+          runZoned(
             () {
-              HemendLogger(logger: testLogger);
+              expect(loggerInstance.logLevel, logger.level.value);
+
+              final testLogger = Logger('non.root.logger');
+              expect(
+                () {
+                  HemendLogger(logger: testLogger);
+                },
+                throwsException,
+              );
+              var defaultLogger = HemendLogger.defaultLogger(
+                logger: testLogger,
+                preferPrintOverLog: true,
+              );
+              expect(defaultLogger, isA<HemendLogger>());
+              testLogger.info(
+                'test',
+                Exception('test error'),
+                StackTrace.empty,
+              );
+              expect(defaultLogger.listeners.isEmpty, false);
+              defaultLogger.removeListener(defaultLogger.listeners.first);
+              expect(defaultLogger.listeners.isEmpty, true);
+              defaultLogger = HemendLogger.defaultLogger(
+                preferPrintOverLog: false,
+              );
+              expect(defaultLogger, isA<HemendLogger>());
+              Logger.root.info(
+                'test',
+                Exception('test error'),
+                StackTrace.empty,
+              );
+              expect(defaultLogger.listeners.isEmpty, false);
+              defaultLogger.removeListener(defaultLogger.listeners.first);
+              expect(defaultLogger.listeners.isEmpty, true);
             },
-            throwsException,
+            zoneSpecification: noPrint,
           );
-          var defaultLogger = HemendLogger.defaultLogger(
-            logger: testLogger,
-            preferPrintOverLog: true,
-          );
-          expect(defaultLogger, isA<HemendLogger>());
-          testLogger.info(
-            'test',
-            Exception('test error'),
-            StackTrace.empty,
-          );
-          expect(defaultLogger.listeners.isEmpty, false);
-          defaultLogger.removeListener(defaultLogger.listeners.first);
-          expect(defaultLogger.listeners.isEmpty, true);
-          defaultLogger = HemendLogger.defaultLogger(
-            preferPrintOverLog: false,
-          );
-          expect(defaultLogger, isA<HemendLogger>());
-          Logger.root.info(
-            'test',
-            Exception('test error'),
-            StackTrace.empty,
-          );
-          expect(defaultLogger.listeners.isEmpty, false);
-          defaultLogger.removeListener(defaultLogger.listeners.first);
-          expect(defaultLogger.listeners.isEmpty, true);
         },
       );
       test(
