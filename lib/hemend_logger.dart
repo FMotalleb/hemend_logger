@@ -9,6 +9,7 @@ export 'src/contracts/ansi_console/ansi_console.dart';
 export 'src/contracts/logger/logger.dart';
 export 'src/contracts/typedefs.dart';
 export 'src/helper/diagnosable_object.dart';
+export 'src/helper/logger_helper.dart';
 export 'src/hemend_logger.dart';
 export 'src/log_decorators/ansi_message_color_decorator.dart';
 export 'src/log_decorators/ansi_time_log_decorator.dart';
