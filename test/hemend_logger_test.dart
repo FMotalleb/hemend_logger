@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_positional_boolean_parameters, avoid_redundant_argument_values
+// ignore_for_file: avoid_positional_boolean_parameters, avoid_redundant_argument_values, lines_longer_than_80_chars
 
 import 'dart:async';
 
