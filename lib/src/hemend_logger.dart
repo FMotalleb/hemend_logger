@@ -80,7 +80,7 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
                     green.wrap(time),
                     magenta.wrap(
                       rightArrow,
-                    )
+                    ),
                   ].join(' ');
                 },
               ),
