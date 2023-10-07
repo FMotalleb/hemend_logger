@@ -1,3 +1,9 @@
+## 0.2.7
+
+* (fix) renamed `kDebugMode` to `_kDebugMode` (due to an issue with flutter's native variable name, you had to hide kDebugMode on import)
+* (minor) dart format .
+* (minor) changed lint rules
+
 ## 0.2.6+1
 
 * (feat) logger helper method (`getChild`)
