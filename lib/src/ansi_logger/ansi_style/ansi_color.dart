@@ -2,8 +2,8 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:hemend_logger/src/contracts/ansi_console/color.dart';
-import 'package:hemend_logger/src/contracts/ansi_console/select_graphic_rendition.dart';
+import '../../contracts/ansi_console/color.dart';
+import '../../contracts/ansi_console/select_graphic_rendition.dart';
 
 /// {@macro ansi-color}
 class RgbAnsiColor implements IAnsiColor {

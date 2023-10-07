@@ -1,8 +1,9 @@
 // ignore_for_file: comment_references
 
-import 'package:hemend_logger/src/helper/logger_helper.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
+
+import 'logger_helper.dart';
 
 /// a mixin that adds logging capabilities to the class
 mixin class LogableObject {

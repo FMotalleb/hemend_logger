@@ -1,7 +1,7 @@
 name: hemend_logger
 description: log handler for logging package it will organize logging methods and easier to use in the application
 repository: https://github.com/FMotalleb/hemend_logger
-version: 0.2.6+1 
+version: 0.2.7
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -9,8 +9,8 @@ environment:
 dev_dependencies:
   build_runner: ^2.4.4
   mockito: ^5.4.1
+  moti_lints: ^1.0.1
   test: ^1.24.3
-  very_good_analysis: ^5.0.0
 dependencies:
   logging: ">=1.0.0 <2.0.0"
   meta: ">=1.9.0 <2.0.0"

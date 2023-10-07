@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:hemend_logger/hemend_logger.dart';
+import '../../hemend_logger.dart';
 
 /// {@template ansi-logger}
 /// Ansi logger that prints log records into the console

@@ -1,4 +1,4 @@
-import 'package:hemend_logger/src/contracts/ansi_console/select_graphic_rendition.dart';
+import '../../contracts/ansi_console/select_graphic_rendition.dart';
 
 /// {@template ansi-console-style}
 /// This is a wrapper around multiple [ISelectGraphicRendition]s

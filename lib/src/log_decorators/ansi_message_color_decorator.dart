@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_redundant_argument_values
 
-import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_color.dart';
-import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_console_style.dart';
-import 'package:hemend_logger/src/ansi_logger/ansi_style/ansi_text_effect.dart';
-import 'package:hemend_logger/src/contracts/logger/logger.dart';
+import '../ansi_logger/ansi_style/ansi_color.dart';
+import '../ansi_logger/ansi_style/ansi_console_style.dart';
+import '../ansi_logger/ansi_style/ansi_text_effect.dart';
+import '../contracts/logger/logger.dart';
 
 const _defaultColorMapper = {
   1200: AnsiConsoleStyle(
@@ -98,7 +98,7 @@ LogDecorator ansiLogMessageColorDecorator({
     }(),
     'the map keys must be in descending order',
   );
-  return (String message, LogRecordEntity record) {
+  return (message, record) {
     final colorWrapper = colorMap.entries
         .where(
           (element) => element.key <= record.level,

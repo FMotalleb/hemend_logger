@@ -1,4 +1,4 @@
-import 'package:hemend_logger/src/contracts/ansi_console/select_graphic_rendition.dart';
+import '../../contracts/ansi_console/select_graphic_rendition.dart';
 
 /// {@template sgr}
 /// you can find more information at https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters
