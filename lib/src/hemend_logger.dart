@@ -1,9 +1,11 @@
-import 'package:hemend_logger/hemend_logger.dart';
 import 'package:term_glyph/term_glyph.dart';
 
+import '../hemend_logger.dart';
+
 /// this variable is not available in dart but this will work in flutter
-const kDebugMode = (bool.fromEnvironment('dart.vm.product') == false) && //
-    (bool.fromEnvironment('dart.vm.profile') == false);
+const _kDebugMode = //
+    !bool.fromEnvironment('dart.vm.product') &&
+        !bool.fromEnvironment('dart.vm.profile');
 
 /// {@template hemend-logger}
 /// A simple implementation of the [ILogManager]
@@ -28,7 +30,7 @@ class HemendLogger extends ILogManager {
         _listeners = [
           ...initialListeners,
         ] {
-    if (logger.parent != null && hierarchicalLoggingEnabled == false) {
+    if (logger.parent != null && !hierarchicalLoggingEnabled) {
       if (enableHierarchicalLogging) {
         hierarchicalLoggingEnabled = true;
       } else {
@@ -49,7 +51,7 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
   /// [ansiLogMessageColorDecorator] by default and a timeLogDecorator
   factory HemendLogger.defaultLogger({
     Logger? logger,
-    bool preferPrintOverLog = !kDebugMode,
+    bool preferPrintOverLog = !_kDebugMode,
   }) =>
       HemendLogger(
         logger: logger ?? Logger.root,
