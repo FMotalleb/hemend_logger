@@ -6,7 +6,6 @@
 [![pub points](https://img.shields.io/pub/points/hemend_logger)](https://pub.dev/packages/hemend_logger)
 [![code size](https://img.shields.io/github/languages/code-size/fmotalleb/hemend_logger)](https://github.com/FMotalleb/hemend_logger)
 [![code_count](https://img.shields.io/github/languages/top/fmotalleb/hemend_logger?color=green&label=pure%20dart)](https://pub.dev/packages/hemend_logger)
-[![Publish to pub.dev](https://github.com/FMotalleb/hemend_logger/actions/workflows/publish.yaml/badge.svg)](https://github.com/FMotalleb/hemend_logger/actions/workflows/publish.yaml)
 [![Tests](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml/badge.svg)](https://github.com/FMotalleb/hemend_logger/actions/workflows/main.yaml)
 [![codecov](https://codecov.io/gh/FMotalleb/hemend_logger/branch/master/graph/badge.svg?token=1LFL10FAPU)](https://codecov.io/gh/FMotalleb/hemend_logger)
 
