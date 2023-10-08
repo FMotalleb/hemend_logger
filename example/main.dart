@@ -31,7 +31,6 @@ Future<void> main() async {
       mode: AnsiColorMode.background,
     ),
     AnsiTextEffect.fastBlink,
-    AnsiTextEffect.slowBlink,
   ]);
   print(style.wrap('blinking with rgb color and blue bg'));
 }
