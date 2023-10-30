@@ -77,6 +77,9 @@ class AnsiLogger extends ILogRecorder with DecoratedPrinter {
 
     return decorate(message, record);
   }
+
+  /// If true will add `:{level}` to logger name
+  static bool addTrailingLevel = false;
 }
 
 String _ansiDefaultDecorator(String message, LogRecordEntity record) {
@@ -102,7 +105,7 @@ String _ansiDefaultDecorator(String message, LogRecordEntity record) {
     ],
   );
   final loggerName = yellow(
-    '''[${record.loggerName}${HemendLogger.addTrailingLevel ? ':${HemendLogger.loggerLevelMapper(record.level)}' : ''}]''',
+    '''[${record.loggerName}${AnsiLogger.addTrailingLevel ? ':${HemendLogger.loggerLevelMapper(record.level)}' : ''}]''',
   );
 
   final buffer = StringBuffer()

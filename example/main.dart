@@ -6,7 +6,7 @@ Future<void> main() async {
   Logger.root.level = Level.ALL;
   HemendLogger.defaultLogger(preferPrintOverLog: true);
   HemendLogger.jsonLogger();
-  HemendLogger.addTrailingLevel = true;
+  AnsiLogger.addTrailingLevel = true;
   HemendLogger.loggerLevelMapper = HemendLogger.logLevel2Name;
   Logger('ExampleLogger')
     ..finest('this is finest with level value:${Level.FINEST.value}')

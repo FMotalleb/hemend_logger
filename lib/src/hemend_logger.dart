@@ -5,7 +5,8 @@ import 'json_logger/json_logger.dart';
 
 /// this variable is not available in dart but this will work in flutter
 const _kDebugMode = //
-    !bool.fromEnvironment('dart.vm.product') && !bool.fromEnvironment('dart.vm.profile');
+    !bool.fromEnvironment('dart.vm.product') && //
+        !bool.fromEnvironment('dart.vm.profile');
 
 /// {@template hemend-logger}
 /// A simple implementation of the [ILogManager]
@@ -145,6 +146,19 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
     super.removeListener(listener);
   }
 
+  /// Override this to change appearance of log level values in results
+  /// (AnsiLogger/JsonLogger) to desired format
+  ///
+  /// if you want to print logLevel's name with ansi logger you must set
+  /// [AnsiLogger.addTrailingLevel] to true
+  ///
+  /// by default it will return log level's integer value as provided in [Level]
+  ///
+  /// ```dart
+  ///  info('test'); // 800
+  ///  HemendLogger.loggerLevelMapper = HemendLogger.logLevel2Name;
+  ///  info('test'); // INFO
+  /// ```
   static Adapter<int, dynamic> loggerLevelMapper = (p0) => p0;
   static String logLevel2Name(int level) {
     final resolved = Level.LEVELS.reversed.firstWhere(
@@ -153,6 +167,4 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
     );
     return resolved.name;
   }
-
-  static bool addTrailingLevel = false;
 }
