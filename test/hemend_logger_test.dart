@@ -102,6 +102,29 @@ void main() {
               expect(defaultLogger.listeners.isEmpty, false);
               defaultLogger.removeListener(defaultLogger.listeners.first);
               expect(defaultLogger.listeners.isEmpty, true);
+
+              var jsonLogger = HemendLogger.jsonLogger(
+                logger: testLogger,
+              );
+              expect(jsonLogger, isA<HemendLogger>());
+              testLogger.info(
+                'test',
+                Exception('test error'),
+                StackTrace.empty,
+              );
+              expect(jsonLogger.listeners.isEmpty, false);
+              jsonLogger.removeListener(jsonLogger.listeners.first);
+              expect(jsonLogger.listeners.isEmpty, true);
+              jsonLogger = HemendLogger.jsonLogger();
+              expect(jsonLogger, isA<HemendLogger>());
+              Logger.root.info(
+                'test',
+                Exception('test error'),
+                StackTrace.empty,
+              );
+              expect(jsonLogger.listeners.isEmpty, false);
+              jsonLogger.removeListener(jsonLogger.listeners.first);
+              expect(jsonLogger.listeners.isEmpty, true);
             },
             zoneSpecification: noPrint,
           );

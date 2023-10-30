@@ -102,8 +102,9 @@ String _ansiDefaultDecorator(String message, LogRecordEntity record) {
     ],
   );
   final loggerName = yellow(
-    '[${record.loggerName}]',
+    '''[${record.loggerName}${HemendLogger.addTrailingLevel ? ':${HemendLogger.loggerLevelMapper(record.level)}' : ''}]''',
   );
+
   final buffer = StringBuffer()
     ..write(loggerName)
     ..write('\t')

@@ -1,11 +1,11 @@
 import 'package:term_glyph/term_glyph.dart';
 
 import '../hemend_logger.dart';
+import 'json_logger/json_logger.dart';
 
 /// this variable is not available in dart but this will work in flutter
 const _kDebugMode = //
-    !bool.fromEnvironment('dart.vm.product') &&
-        !bool.fromEnvironment('dart.vm.profile');
+    !bool.fromEnvironment('dart.vm.product') && !bool.fromEnvironment('dart.vm.profile');
 
 /// {@template hemend-logger}
 /// A simple implementation of the [ILogManager]
@@ -90,7 +90,25 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
           ),
         ],
       );
-
+  factory HemendLogger.jsonLogger({
+    Logger? logger,
+    RecordMapper? recordMapper,
+    JsonSerializer? serializer,
+    void Function(String) output = print,
+  }) {
+    final aLogger = logger ?? Logger.root;
+    return HemendLogger(
+      logger: aLogger,
+      initialListeners: [
+        JsonLogger(
+          logLevel: aLogger.level.value,
+          mapper: recordMapper,
+          serializer: serializer,
+          output: output,
+        ),
+      ],
+    );
+  }
   void _init() {
     _logger.onRecord
         .map(
@@ -126,4 +144,15 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
     _listeners.remove(listener);
     super.removeListener(listener);
   }
+
+  static Adapter<int, dynamic> loggerLevelMapper = (p0) => p0;
+  static String logLevel2Name(int level) {
+    final resolved = Level.LEVELS.reversed.firstWhere(
+      (element) => element.value <= level,
+      orElse: () => Level('$level', level),
+    );
+    return resolved.name;
+  }
+
+  static bool addTrailingLevel = false;
 }
