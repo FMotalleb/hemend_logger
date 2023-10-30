@@ -1,3 +1,8 @@
+## 0.3.0
+
+* (feat) JsonLogger can be used to log in form of json objects
+* (enh) LevelToName mapper for log levels
+
 ## 0.2.7
 
 * (fix) renamed `kDebugMode` to `_kDebugMode` (due to an issue with flutter's native variable name, you had to hide kDebugMode on import)
