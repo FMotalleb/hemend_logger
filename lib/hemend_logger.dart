@@ -11,5 +11,6 @@ export 'src/contracts/typedefs.dart';
 export 'src/helper/diagnosable_object.dart';
 export 'src/helper/logger_helper.dart';
 export 'src/hemend_logger.dart';
+export 'src/json_logger/json_logger.dart';
 export 'src/log_decorators/ansi_message_color_decorator.dart';
 export 'src/log_decorators/ansi_time_log_decorator.dart';
