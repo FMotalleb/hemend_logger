@@ -1,7 +1,6 @@
 import 'package:term_glyph/term_glyph.dart';
 
 import '../hemend_logger.dart';
-import 'json_logger/json_logger.dart';
 
 /// this variable is not available in dart but this will work in flutter
 const _kDebugMode = //
