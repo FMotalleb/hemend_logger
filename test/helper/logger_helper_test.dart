@@ -10,13 +10,21 @@ void main() {
         () {
           const testName = 'test';
           final logger = Logger(testName);
-          expect(logger.getChild(testName).fullName, '$testName.$testName');
+          expect(
+            logger.newChildLogger(testName).fullName,
+            '$testName.$testName',
+          );
+          expect(
+            logger.getChild(testName).fullName,
+            '$testName.$testName',
+          );
         },
       );
       test(
         'throw get child on detached',
         () {
           final logger = Logger.detached('test');
+          expect(() => logger.newChildLogger('test-child'), throwsException);
           expect(() => logger.getChild('test-child'), throwsException);
         },
       );
@@ -25,6 +33,7 @@ void main() {
         () {
           final logger = Logger.root;
           const testName = 'test';
+          expect(logger.newChildLogger(testName).fullName, testName);
           expect(logger.getChild(testName).fullName, testName);
         },
       );

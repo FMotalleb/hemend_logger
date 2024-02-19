@@ -18,7 +18,11 @@ mixin class LogableObject {
   Logger get logger => Logger(loggerName);
 
   /// creates a new [Logger] instance that is the child of [logger]
-  Logger getChild(String name) => logger.getChild(name);
+  @Deprecated('Use [newChildLogger] instead of this')
+  Logger Function(String) get getChild => newChildLogger;
+
+  /// creates a new [Logger] instance that is the child of [logger]
+  Logger newChildLogger(String name) => logger.newChildLogger(name);
 
   /// Log message at level [Level.INFO].
   ///

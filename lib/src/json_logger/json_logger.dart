@@ -22,7 +22,7 @@ typedef JsonSerializer = Adapter<Map<String, dynamic>, String>;
 /// maps.
 ///  * uses a customizable serializer to serialize JSON maps to strings.
 /// {@endtemplate}
-class JsonLogger extends ILogRecorder {
+final class JsonLogger extends ILogRecorder {
   /// {@macro json-logger}
   JsonLogger({
     required this.logLevel,

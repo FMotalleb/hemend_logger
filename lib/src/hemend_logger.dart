@@ -12,7 +12,7 @@ const _kDebugMode = //
 /// that provides a logging solution for the application
 /// using the [Logger] form [`logging`](https://pub.dev/packages/logging) package
 /// {@endtemplate}
-class HemendLogger extends ILogManager {
+interface class HemendLogger extends ILogManager {
   /// {@macro hemend-logger}
   ///
   /// *logger
@@ -90,6 +90,13 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
           ),
         ],
       );
+
+  /// json log manager that attaches to [Logger.root] and records any log
+  /// but logs from detached instances
+  ///
+  /// sends logs to stdout in json format
+  ///
+  /// useful for serving logs to other log managers like docker logger
   factory HemendLogger.jsonLogger({
     Logger? logger,
     RecordMapper? recordMapper,
@@ -109,6 +116,7 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
       ],
     );
   }
+
   void _init() {
     _logger.onRecord
         .map(
