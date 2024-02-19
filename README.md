@@ -40,6 +40,16 @@ This software package incorporates the [`logging`](https://pub.dev/packages/logg
 
 The present package incorporates an AnsiLogger as its intrinsic logging utility, which effectively facilitates the printing of logs within a terminal environment. However, it possesses the inherent flexibility to be extended in order to engender diverse logging capabilities. For instance, it can be augmented to support online log recording, allowing for the persistent storage of log data. Additionally, it can be further enhanced to provide in-app interactive logging systems, enabling the utilization of toast messages or similar mechanisms for conveying log information within the application interface.
 
+To enhance the functionality of this package, you can use extension packages such as:
+
+* `hemend_async_log_recorder`:
+
+> * Enables asynchronous logging, including options for file logging, websocket, and HTTP requests.
+> * Supports `Isolated` logging, which helps keep your application running smoothly even under high load when using multiple log recorders like file logger, Sentry logger, ANSI logger, and websocket logger.
+
+* `hemend_sentry_log_recorder`:
+  * A simple log recorder for Sentry instance.
+
 ### Initiation
 
 For optimal usage, it is recommended to employ the default configuration offered by [HemendLogger]. By doing so, you can readily utilize the predefined settings and specifications without any additional customization.

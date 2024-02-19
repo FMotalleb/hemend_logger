@@ -1,5 +1,3 @@
-import 'package:term_glyph/term_glyph.dart';
-
 import '../hemend_logger.dart';
 
 /// this variable is not available in dart but this will work in flutter
@@ -81,7 +79,7 @@ set `hierarchicalLoggingEnabled = true` before initialization of this manager.
                   return [
                     green.wrap(time),
                     magenta.wrap(
-                      rightArrow,
+                      '->',
                     ),
                   ].join(' ');
                 },

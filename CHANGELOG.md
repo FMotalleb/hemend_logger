@@ -1,3 +1,8 @@
+## 0.3.1
+
+* (deprecation) deprecated helper method `getChild` in favor of `newChildLogger`
+  * `getChild` will be removed after 0.4.0 release
+
 ## 0.3.0
 
 * (feat) JsonLogger can be used to log in form of json objects
